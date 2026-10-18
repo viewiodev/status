@@ -16,9 +16,10 @@
   // TanStack Start requires nodejs_compat for SSR (async_hooks, streams)
   "compatibility_flags": ["nodejs_compat"],
   "main": "@tanstack/react-start/server-entry",
-  "workers_dev": true,
-  // Example custom domain route:
-  // "routes": [{ "pattern": "status.example.com", "custom_domain": true }],
+  "workers_dev": false,
+  "preview_urls": false,
+  // Viewio: the custom domain only, no workers.dev address (docs/INFRA.md §15.7).
+  "routes": [{ "pattern": "status.viewio.me", "custom_domain": true }],
   "observability": {
     "enabled": true,
   },
