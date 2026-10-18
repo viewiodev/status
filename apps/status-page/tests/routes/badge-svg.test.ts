@@ -1,11 +1,29 @@
-import { afterEach, describe, expect, it, vi } from 'vite-plus/test';
+import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vite-plus/test';
 import { workerConfig } from '@flarewatch/config/worker';
 import { forgetCachedView } from '@/lib/snapshots';
 import { Route } from '@/routes/api/badge[.]svg';
 import { BADGE_TIME, callBadge, stubBadgeView } from '../helpers/badge';
 import { forgetViewAroundEachTest } from '../helpers/snapshots';
 
-const originalMonitors = workerConfig.monitors;
+// Viewio patch (upstream issue pending): the badge tests read their own monitor, not the fork's config.
+const userMonitors = workerConfig.monitors;
+const originalMonitors: typeof workerConfig.monitors = [
+  {
+    id: 'demo_example',
+    name: 'Example Domain',
+    method: 'GET',
+    target: 'https://example.com',
+    expectedCodes: [200],
+    timeout: 10000,
+    link: false,
+  },
+];
+beforeEach(() => {
+  workerConfig.monitors = originalMonitors;
+});
+afterAll(() => {
+  workerConfig.monitors = userMonitors;
+});
 afterEach(() => {
   workerConfig.monitors = originalMonitors;
 });
