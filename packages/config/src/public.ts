@@ -1,14 +1,11 @@
 import type { PageConfig } from '@flarewatch/shared';
 
+// Written in the Viewio repository (docs/INFRA.md §15.7) and committed here by OpenTofu.
 export const pageConfig: PageConfig = {
-  title: 'FlareWatch',
-  links: [
-    { label: 'GitHub', link: 'https://github.com/saminnet/flarewatch' },
-    { label: 'Cloudflare', link: 'https://www.cloudflare.com/' },
-  ],
+  title: 'Viewio',
+  links: [{ label: 'viewio.me', link: 'https://viewio.me/' }],
   group: {
-    Websites: ['demo_example', 'demo_cloudflare_docs'],
-    APIs: ['demo_cloudflare_trace', 'demo_one_dns_trace'],
-    'Status Feeds': ['demo_cloudflare_status', 'demo_github_status'],
+    Viewio: ['studio', 'install', 'links', 'catalogues', 'metadata', 'indexer', 'posters'],
+    Débrideurs: ['alldebrid', 'torbox'],
   },
 };
